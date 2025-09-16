@@ -27,29 +27,56 @@ def main():
         # Process the works data to extract relevant publication details
         publications = []
         for work in works:
-            summary = work.get('work-summary', [{}])[0]
-            title = summary.get('title', {}).get('title', 'N/A')
-            journal = summary.get('journal-title', {}).get('value', 'N/A')
-            pub_date_dict = summary.get('publication-date', {}).get('date', {})
-            pub_date = f"{pub_date_dict.get('year')}-{pub_date_dict.get('month', '01')}-{pub_date_dict.get('day', '01')}"
-            doi = 'N/A'
-            for external_id in summary.get('external-ids', {}).get('external-id', []):
-                if external_id.get('external-id-type') == 'doi':
-                    doi = external_id.get('external-id-value')
-                    break
-            
-            publications.append({
-                'title': title,
-                'journal': journal,
-                'publication_date': pub_date,
-                'doi': doi
-            })
+            summaries = work.get('work-summary', [])
+            for summary in summaries:  # Process all summaries, not just the first
+                # Fix title parsing - it's nested deeper
+                title_obj = summary.get('title', {})
+                if isinstance(title_obj, dict) and 'title' in title_obj:
+                    if isinstance(title_obj['title'], dict):
+                        title = title_obj['title'].get('value', 'N/A')
+                    else:
+                        title = title_obj.get('title', 'N/A')
+                else:
+                    title = 'N/A'
+                
+                journal = summary.get('journal-title', {}).get('value', 'N/A')
+                
+                # Fix publication date parsing - use year.value, month.value, day.value
+                pub_date_dict = summary.get('publication-date', {})
+                year = pub_date_dict.get('year', {}).get('value') if pub_date_dict.get('year') else None
+                month = pub_date_dict.get('month', {}).get('value') if pub_date_dict.get('month') else None
+                day = pub_date_dict.get('day', {}).get('value') if pub_date_dict.get('day') else None
+                
+                if year:
+                    month_str = str(month).zfill(2) if month else '01'
+                    day_str = str(day).zfill(2) if day else '01'
+                    pub_date = f"{year}-{month_str}-{day_str}"
+                else:
+                    pub_date = 'N/A'
+                
+                doi = 'N/A'
+                external_ids = summary.get('external-ids', {}).get('external-id', [])
+                for external_id in external_ids:
+                    if external_id.get('external-id-type') == 'doi':
+                        doi = external_id.get('external-id-value')
+                        break
+                
+                # Only add publications with valid titles
+                if title != 'N/A':
+                    publications.append({
+                        'title': title,
+                        'journal': journal,
+                        'publication_date': pub_date,
+                        'doi': doi
+                    })
 
         # Save the processed data to a JSON file
         with open('publications.json', 'w') as f:
             json.dump(publications, f, indent=2)
         
-        print("Successfully updated publications.json")
+        if len(publications) == 0:
+            print("Warning: No publications found. Please check the ORCID record or API response.")
+        print(f"Successfully updated publications.json with {len(publications)} publications")
     else:
         print("Failed to get ORCID data.")
 
