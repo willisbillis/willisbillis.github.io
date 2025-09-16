@@ -74,6 +74,8 @@ def main():
         with open('publications.json', 'w') as f:
             json.dump(publications, f, indent=2)
         
+        if len(publications) == 0:
+            print("Warning: No publications found. Please check the ORCID record or API response.")
         print(f"Successfully updated publications.json with {len(publications)} publications")
     else:
         print("Failed to get ORCID data.")
