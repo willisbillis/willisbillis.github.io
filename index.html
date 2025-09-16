@@ -292,7 +292,25 @@
                     <div class="publication-list">
                         <p>For a complete list of my publications, please visit my <a href="https://orcid.org/0000-0001-8271-3394" target="_blank">ORCID profile</a>.</p>
                         <h3>Recent Publications</h3>
-                        <p class="placeholder-text">Publication links and details will be added here as they become available.</p>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            fetch('publications.json')
+                .then(response => response.json())
+                .then(data => {
+                    const list = document.getElementById('publications-list');
+                    data.forEach(pub => {
+                        const li = document.createElement('li');
+                        li.innerHTML = `
+                            <strong>${pub.title}</strong><br>
+                            <em>${pub.journal}</em>, ${pub.publication_date}<br>
+                            DOI: <a href="https://doi.org/${pub.doi}">${pub.doi}</a>
+                        `;
+                        list.appendChild(li);
+                    });
+                })
+                .catch(error => console.error('Error loading publications:', error));
+        });
+    </script>
                     </div>
                 </div>
 
