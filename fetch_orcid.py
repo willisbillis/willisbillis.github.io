@@ -39,7 +39,8 @@ def main():
                 else:
                     title = 'N/A'
                 
-                journal = summary.get('journal-title', {}).get('value', 'N/A')
+                journal_obj = summary.get('journal-title')
+                journal = journal_obj.get('value', 'N/A') if journal_obj else 'N/A'
                 
                 # Fix publication date parsing - use year.value, month.value, day.value
                 pub_date_dict = summary.get('publication-date', {})
