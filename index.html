@@ -209,6 +209,49 @@
             flex-shrink: 0;
         }
 
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .skill-category {
+            background: var(--mint-light);
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid var(--mint-primary);
+        }
+
+        .skill-category h3 {
+            margin: 0 0 15px 0;
+            color: var(--mint-dark);
+            font-size: 1.2em;
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .skill-tag {
+            background: var(--white);
+            color: var(--text-primary);
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            font-weight: 500;
+            border: 1px solid var(--mint-secondary);
+            transition: all 0.3s ease;
+        }
+
+        .skill-tag:hover {
+            background: var(--mint-primary);
+            color: var(--white);
+            transform: translateY(-2px);
+        }
+
         .publication-list {
             background: var(--light-gray);
             padding: 25px;
@@ -310,6 +353,7 @@
         <div class="tabs-container">
             <div class="tabs">
                 <button class="tab-button active" data-tab="about">About</button>
+                <button class="tab-button" data-tab="skills">Skills</button>
                 <button class="tab-button" data-tab="publications">Publications</button>
                 <button class="tab-button" data-tab="projects">Projects</button>
                 <button class="tab-button" data-tab="contact">Contact</button>
@@ -318,7 +362,87 @@
             <div class="tab-content">
                 <div class="tab-pane active" id="about">
                     <h2>About Me</h2>
-                    <p>Working between both the Boss-Scharer and Kohlmeier labs, I am a bioinformatics scientist with 4 years of job experience and a decade of research experience. I initiate and oversees collaborative software development projects for genomic machine learning tools, work directly with a range of researchers, and make important contributions to manuscripts. I am an expert in single cell multiomics.</p>
+                    <p>I'm a bioinformatics analyst currently working between the Boss-Scharer and Kohlmeier labs at Emory University's Department of Microbiology and Immunology, specializing in single-cell bioinformatics, systems biology, and graph theory applications.</p>
+                    
+                    <p>My path to bioinformatics began in the cosmos. I earned my Bachelor of Science in Astrophysics from The University of Georgia in 2020, where I spent my undergraduate years studying computational fluid dynamics of interstellar hydrogen clouds that fuel star formation in the Milky Way under Robin Shelton's mentorship. My research journey took me from remote observations at Kitt Peak National Observatory and Cerro Tololo Inter-American Observatory—quantifying dark matter in spiral galaxies during high school with Agnes Scott College's Amy Lovell—to spending a southern hemisphere summer in La Serena, Chile, studying Type Ia Supernovae through an NSF Research Experiences for Undergraduates program.</p>
+                    
+                    <p>The analytical and computational skills I developed studying the universe's largest structures now help me explore some of biology's smallest mysteries. Since joining Emory in 2021, I've focused on developing collaborative software tools and machine learning approaches for genomic data analysis, bridging computational methods with biological discoveries.</p>
+                    
+                    <p>Outside the lab, I'm a multi-instrumentalist (piano, harmonica, ukulele, and trumpet), passionate traveler who loves connecting with people from different cultures, and creative cook who treats the kitchen as another space for experimentation. I share my home with my partner and two cats with wonderfully layered personalities—Kiwi and Theo—who graciously allow us to live in their domain.</p>
+                </div>
+
+                <div class="tab-pane" id="skills">
+                    <h2>Skills & Technologies</h2>
+                    
+                    <div class="skills-grid">
+                        <div class="skill-category">
+                            <h3>Programming Languages</h3>
+                            <div class="skill-tags">
+                                <span class="skill-tag">Python</span>
+                                <span class="skill-tag">R</span>
+                                <span class="skill-tag">Bash</span>
+                            </div>
+                        </div>
+
+                        <div class="skill-category">
+                            <h3>Bioinformatics Tools & Technologies</h3>
+                            <div class="skill-tags">
+                                <span class="skill-tag">Single-cell RNA-seq</span>
+                                <span class="skill-tag">ATAC-seq</span>
+                                <span class="skill-tag">CITE-seq</span>
+                                <span class="skill-tag">ASAP-seq</span>
+                                <span class="skill-tag">BCR/TCR libraries</span>
+                                <span class="skill-tag">Cell Ranger</span>
+                                <span class="skill-tag">Seurat</span>
+                                <span class="skill-tag">Scanpy</span>
+                                <span class="skill-tag">CellRank</span>
+                                <span class="skill-tag">SCPA</span>
+                                <span class="skill-tag">MOFA</span>
+                                <span class="skill-tag">CellxGene</span>
+                                <span class="skill-tag">ShinyCell</span>
+                            </div>
+                        </div>
+
+                        <div class="skill-category">
+                            <h3>Computing & Infrastructure</h3>
+                            <div class="skill-tags">
+                                <span class="skill-tag">AWS (EC2, S3, CLI)</span>
+                                <span class="skill-tag">High-Performance Computing</span>
+                                <span class="skill-tag">SLURM</span>
+                                <span class="skill-tag">Git Version Control</span>
+                                <span class="skill-tag">Pipeline Development</span>
+                                <span class="skill-tag">Cloud Data Portals</span>
+                            </div>
+                        </div>
+
+                        <div class="skill-category">
+                            <h3>Data Analysis & Mathematics</h3>
+                            <div class="skill-tags">
+                                <span class="skill-tag">Data Preprocessing</span>
+                                <span class="skill-tag">Quality Control</span>
+                                <span class="skill-tag">Batch Correction</span>
+                                <span class="skill-tag">Clustering</span>
+                                <span class="skill-tag">Trajectory Inference</span>
+                                <span class="skill-tag">Differential Expression</span>
+                                <span class="skill-tag">Gene Regulatory Networks</span>
+                                <span class="skill-tag">Graph Theory</span>
+                                <span class="skill-tag">Linear Algebra</span>
+                                <span class="skill-tag">Fourier Transforms</span>
+                            </div>
+                        </div>
+
+                        <div class="skill-category">
+                            <h3>Leadership & Communication</h3>
+                            <div class="skill-tags">
+                                <span class="skill-tag">Team Training & Onboarding</span>
+                                <span class="skill-tag">FAIR Data Management</span>
+                                <span class="skill-tag">Technical Communication</span>
+                                <span class="skill-tag">Experimental Design</span>
+                                <span class="skill-tag">Resource Management</span>
+                                <span class="skill-tag">Problem-Solving</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="tab-pane" id="publications">
@@ -370,13 +494,13 @@
                     <div class="contact-info">
                         <h3>Professional Profiles</h3>
                         <p>ORCID: <a href="https://orcid.org/0000-0001-8271-3394" target="_blank">0000-0001-8271-3394</a></p>
-                        
+                        <p>Github: <a href="https://github.com/willisbillis" target="_blank">willisbillis</a></p>
+
                         <h3>Email</h3>
-                        <p>mwil270 < AT > emory < DOT > edu</p>
-                        
-                        <h3>Institution</h3>
-                        <p>Emory University<br>
-                        Boss-Scharer and Kohlmeier Labs<br>
+                        <p>mewilliams < DOT > bio < AT > gmail < DOT > com</p>
+
+                        <h3>Resources</h3>
+                        <p><a href="CV Elliott Williams.pdf" target="_blank">Download CV (PDF)</a></p>
                     </div>
                 </div>
             </div>
