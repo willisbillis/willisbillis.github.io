@@ -157,6 +157,50 @@
       justify-content: flex-end;
     }
 
+    .menu-toggle {
+      display: none;
+      border: 1px solid rgba(31, 28, 36, 0.16);
+      background: rgba(255, 255, 255, 0.84);
+      color: var(--ink-800);
+      border-radius: 12px;
+      width: 42px;
+      height: 42px;
+      padding: 0;
+      font-family: inherit;
+      font-size: 0.8rem;
+      font-weight: 800;
+      letter-spacing: 0.02em;
+      line-height: 1;
+      cursor: pointer;
+      transition: transform 180ms ease, background 180ms ease;
+    }
+
+    .menu-glyph {
+      display: inline-block;
+      font-size: 1.18rem;
+      font-weight: 700;
+      transform: translateY(-1px);
+    }
+
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      margin: -1px;
+      padding: 0;
+      border: 0;
+      white-space: nowrap;
+      clip-path: inset(50%);
+      overflow: hidden;
+    }
+
+    .menu-toggle:hover,
+    .menu-toggle:focus-visible {
+      transform: translateY(-1px);
+      background: rgba(24, 184, 176, 0.2);
+      outline: none;
+    }
+
     .theme-toggle {
       border: 1px solid rgba(31, 28, 36, 0.16);
       background: rgba(255, 255, 255, 0.84);
@@ -179,6 +223,12 @@
     }
 
     body[data-theme="dark"] .theme-toggle {
+      border-color: rgba(255, 255, 255, 0.2);
+      background: rgba(17, 22, 36, 0.92);
+      color: #f4f2ff;
+    }
+
+    body[data-theme="dark"] .menu-toggle {
       border-color: rgba(255, 255, 255, 0.2);
       background: rgba(17, 22, 36, 0.92);
       color: #f4f2ff;
@@ -580,6 +630,18 @@
     }
 
     @media (max-width: 980px) {
+      .topbar-inner {
+        height: auto;
+        padding: 0.7rem 0;
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .nav {
+        width: 100%;
+        justify-content: flex-start;
+      }
+
       .hero-shell {
         grid-template-columns: 1fr;
       }
@@ -601,8 +663,32 @@
         flex-direction: column;
       }
 
+      .nav {
+        width: 100%;
+        justify-content: flex-start;
+        gap: 0.45rem;
+      }
+
+      .nav a,
+      .theme-toggle {
+        min-height: 42px;
+        padding: 0.5rem 0.72rem;
+      }
+
+      .nav a {
+        font-size: 0.9rem;
+      }
+
+      .brand {
+        font-size: 1rem;
+      }
+
       .hero {
-        padding-top: 4.2rem;
+        padding-top: 3.6rem;
+      }
+
+      h1 {
+        font-size: clamp(1.7rem, 8vw, 2.2rem);
       }
 
       .hero-main,
@@ -610,6 +696,10 @@
       .about-main,
       .about-side {
         padding: 1rem;
+      }
+
+      .section {
+        padding-top: 1.5rem;
       }
 
       .card {
@@ -622,7 +712,112 @@
       }
 
       .theme-toggle {
-        margin-top: 0.2rem;
+        margin-top: 0;
+      }
+
+      .cta-row {
+        gap: 0.6rem;
+      }
+
+      .btn {
+        flex: 1 1 100%;
+        text-align: center;
+      }
+    }
+
+    @media (max-width: 460px) {
+      .container {
+        width: min(var(--container), calc(100% - 1.2rem));
+      }
+
+      .topbar-inner {
+        padding: 0.5rem 0;
+      }
+
+      .nav {
+        display: grid;
+        grid-template-columns: repeat(6, minmax(0, 1fr));
+        gap: 0.35rem;
+      }
+
+      .nav > a,
+      .nav > .theme-toggle {
+        grid-column: span 2;
+        width: 100%;
+        text-align: center;
+      }
+
+      .nav > a:nth-of-type(4) {
+        grid-column: 2 / span 2;
+      }
+
+      .nav > .theme-toggle {
+        grid-column: 4 / span 2;
+      }
+
+      .nav a,
+      .theme-toggle {
+        font-size: 0.85rem;
+        min-height: 40px;
+        padding: 0.4rem 0.58rem;
+      }
+
+      .metric .n {
+        font-size: 1.45rem;
+      }
+
+      .section-note,
+      .card p,
+      .about-main p {
+        font-size: 0.92rem;
+      }
+    }
+
+    @media (max-width: 360px) {
+      .topbar-inner {
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        row-gap: 0.45rem;
+      }
+
+      .menu-toggle {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 38px;
+      }
+
+      .nav {
+        display: none;
+        width: 100%;
+        margin-top: 0.65rem;
+      }
+
+      .nav.is-open {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 0.35rem;
+        padding: 0.45rem;
+        border-radius: 14px;
+        border: 1px solid var(--line);
+        background: var(--card);
+        backdrop-filter: blur(10px);
+        box-shadow: var(--shadow);
+      }
+
+      .nav > a,
+      .nav > .theme-toggle,
+      .nav > a:nth-of-type(4),
+      .nav > .theme-toggle {
+        grid-column: auto;
+        width: 100%;
+        text-align: center;
+      }
+
+      .nav.is-open > .theme-toggle {
+        grid-column: 1 / -1;
       }
     }
 
@@ -647,7 +842,11 @@
   <header class="topbar">
     <div class="container topbar-inner">
       <a class="brand" href="#top">M. Elliott Williams</a>
-      <nav class="nav" aria-label="Main">
+      <button id="menu-toggle" class="menu-toggle" type="button" aria-label="Toggle navigation menu" aria-controls="site-nav" aria-expanded="false">
+        <span class="menu-glyph" aria-hidden="true">☰</span>
+        <span class="sr-only">Menu</span>
+      </button>
+      <nav id="site-nav" class="nav" aria-label="Main">
         <a href="#about">About</a>
         <a href="#work">Projects</a>
         <a href="#publications">Publications</a>
@@ -940,7 +1139,88 @@
         });
     }
 
+    function setupMobileMenu() {
+      const menuToggle = document.getElementById('menu-toggle');
+      const nav = document.getElementById('site-nav');
+      const glyph = menuToggle ? menuToggle.querySelector('.menu-glyph') : null;
+      if (!menuToggle || !nav) {
+        return;
+      }
+
+      const menuQuery = window.matchMedia('(max-width: 360px)');
+
+      function setExpanded(expanded) {
+        menuToggle.setAttribute('aria-expanded', String(expanded));
+        menuToggle.setAttribute('aria-label', expanded ? 'Close navigation menu' : 'Open navigation menu');
+        if (glyph) {
+          glyph.textContent = expanded ? '×' : '☰';
+        }
+        nav.classList.toggle('is-open', expanded);
+        if (menuQuery.matches) {
+          if (expanded) {
+            nav.removeAttribute('hidden');
+          } else {
+            nav.setAttribute('hidden', '');
+          }
+        } else {
+          nav.removeAttribute('hidden');
+        }
+      }
+
+      function syncMenu() {
+        if (!menuQuery.matches) {
+          setExpanded(false);
+          nav.removeAttribute('hidden');
+          return;
+        }
+        setExpanded(false);
+      }
+
+      menuToggle.addEventListener('click', function () {
+        const expanded = menuToggle.getAttribute('aria-expanded') === 'true';
+        setExpanded(!expanded);
+      });
+
+      document.addEventListener('pointerdown', function (event) {
+        if (!menuQuery.matches) {
+          return;
+        }
+        const expanded = menuToggle.getAttribute('aria-expanded') === 'true';
+        if (!expanded) {
+          return;
+        }
+        const target = event.target;
+        if (target instanceof Node && (nav.contains(target) || menuToggle.contains(target))) {
+          return;
+        }
+        setExpanded(false);
+      });
+
+      document.addEventListener('keydown', function (event) {
+        if (event.key !== 'Escape' || !menuQuery.matches) {
+          return;
+        }
+        const expanded = menuToggle.getAttribute('aria-expanded') === 'true';
+        if (!expanded) {
+          return;
+        }
+        setExpanded(false);
+      });
+
+      nav.querySelectorAll('a').forEach((link) => {
+        link.addEventListener('click', function () {
+          if (menuQuery.matches) {
+            setExpanded(false);
+          }
+        });
+      });
+
+      menuQuery.addEventListener('change', syncMenu);
+      syncMenu();
+    }
+
     document.addEventListener('DOMContentLoaded', function () {
+      setupMobileMenu();
       setupThemeToggle();
       setupScrollProgress();
       revealCards();
