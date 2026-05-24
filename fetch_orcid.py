@@ -1,23 +1,50 @@
 import requests
 import json
-import os
+from pathlib import Path
+from requests.adapters import HTTPAdapter
+from urllib3.util.retry import Retry
 
 # Replace with your actual ORCID iD
 ORCID_ID = "0000-0001-8271-3394"
 ORCID_API_URL = f"https://pub.orcid.org/v3.0/{ORCID_ID}/works"
+OUTPUT_FILE = Path(__file__).resolve().parent / "publications.json"
+REQUEST_TIMEOUT_SECONDS = 20
 
 headers = {
     'Accept': 'application/json'
 }
 
+def _build_session():
+    session = requests.Session()
+    retry = Retry(
+        total=4,
+        read=4,
+        connect=4,
+        backoff_factor=0.8,
+        status_forcelist=(429, 500, 502, 503, 504),
+        allowed_methods=("GET",),
+        raise_on_status=False,
+    )
+    adapter = HTTPAdapter(max_retries=retry)
+    session.mount("https://", adapter)
+    session.mount("http://", adapter)
+    return session
+
 def get_orcid_data():
+    session = _build_session()
     try:
-        response = requests.get(ORCID_API_URL, headers=headers)
+        response = session.get(ORCID_API_URL, headers=headers, timeout=REQUEST_TIMEOUT_SECONDS)
         response.raise_for_status()  # Raise an exception for bad status codes
         return response.json()
     except requests.exceptions.RequestException as e:
         print(f"Error fetching ORCID data: {e}")
         return None
+
+def _publication_sort_key(publication):
+    date = publication.get('publication_date', 'N/A')
+    if not date or date == 'N/A':
+        return ("0000-00-00", publication.get('title', ''))
+    return (date, publication.get('title', ''))
 
 def main():
     data = get_orcid_data()
@@ -71,15 +98,25 @@ def main():
                         'doi': doi
                     })
 
+        # Deduplicate works by DOI if present, otherwise by normalized title.
+        deduped = {}
+        for publication in publications:
+            key = publication['doi'].lower().strip() if publication.get('doi') and publication['doi'] != 'N/A' else publication['title'].lower().strip()
+            if key not in deduped:
+                deduped[key] = publication
+
+        publications = sorted(deduped.values(), key=_publication_sort_key, reverse=True)
+
         # Save the processed data to a JSON file
-        with open('publications.json', 'w') as f:
+        with open(OUTPUT_FILE, 'w', encoding='utf-8') as f:
             json.dump(publications, f, indent=2)
         
         if len(publications) == 0:
             print("Warning: No publications found. Please check the ORCID record or API response.")
-        print(f"Successfully updated publications.json with {len(publications)} publications")
+        print(f"Successfully updated {OUTPUT_FILE.name} with {len(publications)} publications")
     else:
         print("Failed to get ORCID data.")
+        raise SystemExit(1)
 
 if __name__ == "__main__":
     main()

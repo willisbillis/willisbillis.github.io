@@ -1,583 +1,951 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>M Elliott Williams | Bioinformatics Analyst</title>
-    <style>
-        :root {
-            --mint-primary: #7FDDDD;
-            --mint-secondary: #B2E6E6;
-            --mint-light: #E0F7F7;
-            --mint-dark: #4DBBBB;
-            --mint-accent: #66CCCC;
-            --text-primary: #2C3E3E;
-            --text-secondary: #5A6B6B;
-            --white: #FFFFFF;
-            --light-gray: #F8FAFA;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="M. Elliott Williams - bioinformatics analyst building high-impact computational biology systems for academic and industry teams.">
+  <title>M. Elliott Williams | Computational Biology</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Syne:wght@500;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --ink-950: #121112;
+      --ink-800: #1f1c24;
+      --ink-600: #3f3a4f;
+      --snow-100: #f6f4ff;
+      --snow-200: #ece8fb;
+      --cyan-300: #5de4dc;
+      --cyan-500: #18b8b0;
+      --coral-400: #ff7f6f;
+      --gold-300: #ffd074;
+      --card: rgba(255, 255, 255, 0.72);
+      --line: rgba(31, 28, 36, 0.12);
+      --shadow: 0 18px 50px rgba(18, 17, 18, 0.18);
+      --radius-xl: 24px;
+      --radius-lg: 16px;
+      --radius-sm: 10px;
+      --container: 1160px;
+    }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+    body[data-theme="dark"] {
+      --ink-950: #f4f2ff;
+      --ink-800: #ddd8f5;
+      --ink-600: #b9b3d6;
+      --card: rgba(20, 24, 38, 0.78);
+      --line: rgba(140, 180, 255, 0.24);
+      --shadow: 0 18px 50px rgba(0, 0, 0, 0.45);
+    }
 
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: var(--text-primary);
-            background: linear-gradient(135deg, var(--mint-light) 0%, var(--light-gray) 100%);
-            min-height: 100vh;
-        }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
+    html {
+      scroll-behavior: smooth;
+    }
 
-        header {
-            background: linear-gradient(135deg, var(--mint-primary) 0%, var(--mint-accent) 100%);
-            color: var(--white);
-            padding: 40px 0;
-            text-align: center;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        }
+    body {
+      font-family: "Manrope", "Segoe UI", sans-serif;
+      color: var(--ink-950);
+      background:
+        radial-gradient(1200px 900px at -10% -20%, #d6fbf7 0%, transparent 50%),
+        radial-gradient(900px 700px at 105% 10%, #ffe3de 0%, transparent 55%),
+        linear-gradient(170deg, #fbf9ff 0%, #f4f8ff 50%, #fff7ef 100%);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
 
-        header h1 {
-            font-size: 2.5em;
-            font-weight: 300;
-            margin-bottom: 10px;
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
+    body[data-theme="dark"] {
+      background:
+        radial-gradient(1200px 900px at -10% -20%, #164449 0%, transparent 50%),
+        radial-gradient(900px 700px at 105% 10%, #4d2d3f 0%, transparent 55%),
+        linear-gradient(170deg, #141220 0%, #191a2b 50%, #202531 100%);
+    }
 
-        header p {
-            font-size: 1.2em;
-            font-weight: 300;
-            opacity: 0.9;
-        }
+    body[data-theme="dark"] .topbar {
+      background: rgba(13, 16, 29, 0.76);
+      border-bottom-color: rgba(140, 180, 255, 0.22);
+    }
 
-        .tabs-container {
-            background: var(--white);
-            margin: 30px 0;
-            border-radius: 12px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
-        }
+    .scroll-progress {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      z-index: 60;
+      background: rgba(24, 184, 176, 0.08);
+    }
 
-        .tabs {
-            display: flex;
-            background: var(--mint-light);
-            border-bottom: 1px solid var(--mint-secondary);
-        }
+    .scroll-progress-bar {
+      width: 0%;
+      height: 100%;
+      background: linear-gradient(90deg, var(--cyan-500), var(--coral-400));
+      transition: width 120ms linear;
+    }
 
-        .tab-button {
-            flex: 1;
-            padding: 18px 20px;
-            border: none;
-            background: transparent;
-            color: var(--text-secondary);
-            font-size: 16px;
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            position: relative;
-        }
 
-        .tab-button:hover {
-            background: var(--mint-secondary);
-            color: var(--text-primary);
-        }
+    .grain {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0.18;
+      background-image: radial-gradient(rgba(18,17,18,0.08) 0.5px, transparent 0.5px);
+      background-size: 3px 3px;
+      z-index: -1;
+    }
 
-        .tab-button.active {
-            background: var(--white);
-            color: var(--mint-dark);
-            font-weight: 600;
-        }
+    .container {
+      width: min(var(--container), calc(100% - 2rem));
+      margin: 0 auto;
+    }
 
-        .tab-button.active::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: 3px;
-            background: var(--mint-primary);
-        }
+    .skip-link {
+      position: absolute;
+      left: 14px;
+      top: -120px;
+      z-index: 70;
+      background: #0f1c2f;
+      color: #ffffff;
+      text-decoration: none;
+      font-weight: 700;
+      border-radius: 8px;
+      padding: 0.55rem 0.8rem;
+      transition: top 180ms ease;
+    }
 
-        .tab-content {
-            padding: 40px;
-            min-height: 400px;
-        }
+    .skip-link:focus {
+      top: 12px;
+      outline: 2px solid rgba(255, 255, 255, 0.7);
+      outline-offset: 2px;
+    }
 
-        .tab-pane {
-            display: none;
-            animation: fadeIn 0.3s ease-in-out;
-        }
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 30;
+      backdrop-filter: blur(12px);
+      background: rgba(255, 255, 255, 0.7);
+      border-bottom: 1px solid rgba(31, 28, 36, 0.08);
+    }
 
-        .tab-pane.active {
-            display: block;
-        }
+    .topbar-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      height: 70px;
+    }
 
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(10px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
+    .brand {
+      font-family: "Manrope", "Segoe UI", sans-serif;
+      font-weight: 700;
+      letter-spacing: -0.015em;
+      font-size: 1.05rem;
+      text-decoration: none;
+      color: var(--ink-950);
+    }
 
-        h2 {
-            color: var(--mint-dark);
-            font-size: 2em;
-            font-weight: 400;
-            margin-bottom: 20px;
-            border-bottom: 2px solid var(--mint-light);
-            padding-bottom: 10px;
-        }
+    .nav {
+      display: flex;
+      gap: 0.35rem;
+      align-items: center;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
 
-        h3 {
-            color: var(--text-primary);
-            font-size: 1.4em;
-            font-weight: 500;
-            margin: 25px 0 15px;
-        }
+    .theme-toggle {
+      border: 1px solid rgba(31, 28, 36, 0.16);
+      background: rgba(255, 255, 255, 0.84);
+      color: var(--ink-800);
+      border-radius: 999px;
+      padding: 0.45rem 0.75rem;
+      font-family: inherit;
+      font-size: 0.82rem;
+      font-weight: 800;
+      letter-spacing: 0.02em;
+      cursor: pointer;
+      transition: transform 180ms ease, background 180ms ease;
+    }
 
-        p {
-            font-size: 1.1em;
-            line-height: 1.7;
-            margin-bottom: 15px;
-            color: var(--text-secondary);
-        }
+    .theme-toggle:hover,
+    .theme-toggle:focus-visible {
+      transform: translateY(-1px);
+      background: rgba(24, 184, 176, 0.2);
+      outline: none;
+    }
 
-        a {
-            color: var(--mint-dark);
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.3s ease;
-        }
+    body[data-theme="dark"] .theme-toggle {
+      border-color: rgba(255, 255, 255, 0.2);
+      background: rgba(17, 22, 36, 0.92);
+      color: #f4f2ff;
+    }
 
-        a:hover {
-            color: var(--mint-primary);
-            text-decoration: underline;
-        }
+    body[data-theme="dark"] .panel,
+    body[data-theme="dark"] .card,
+    body[data-theme="dark"] .about-main,
+    body[data-theme="dark"] .about-side,
+    body[data-theme="dark"] .pub-item,
+    body[data-theme="dark"] .metric {
+      background: linear-gradient(145deg, rgba(22, 27, 43, 0.9), rgba(17, 22, 36, 0.82));
+      border-color: rgba(128, 168, 255, 0.24);
+      box-shadow: 0 20px 42px rgba(0, 0, 0, 0.42);
+    }
 
-        .project-card {
-            background: var(--mint-light);
-            padding: 25px;
-            border-radius: 8px;
-            margin-bottom: 20px;
-            border-left: 4px solid var(--mint-primary);
-        }
+    body[data-theme="dark"] .metric:hover,
+    body[data-theme="dark"] .card:hover {
+      background: linear-gradient(145deg, rgba(28, 35, 55, 0.92), rgba(21, 27, 43, 0.88));
+      border-color: rgba(130, 206, 255, 0.36);
+    }
 
-        .project-card a {
-            color: var(--mint-dark);
-            text-decoration: none;
-            font-weight: 600;
-            display: inline-block;
-            margin-top: 10px;
-            padding: 8px 16px;
-            background: var(--white);
-            border-radius: 4px;
-            transition: all 0.3s ease;
-            border: 2px solid var(--mint-primary);
-        }
+    body[data-theme="dark"] .btn-secondary,
+    body[data-theme="dark"] .pill {
+      background: rgba(23, 29, 46, 0.9);
+      border-color: rgba(128, 168, 255, 0.26);
+      color: #e9e8ff;
+    }
 
-        .project-card a:hover {
-            background: var(--mint-primary);
-            color: var(--white);
-            transform: translateY(-1px);
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-        }
+    .nav a {
+      text-decoration: none;
+      color: var(--ink-600);
+      font-weight: 600;
+      font-size: 0.92rem;
+      padding: 0.5rem 0.7rem;
+      border-radius: 999px;
+      transition: transform 180ms ease, background 180ms ease, color 180ms ease;
+    }
 
-        .project-header {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            margin-bottom: 15px;
-        }
+    .nav a:hover,
+    .nav a:focus-visible {
+      background: rgba(24, 184, 176, 0.16);
+      color: var(--ink-950);
+      transform: translateY(-1px);
+      outline: none;
+    }
 
-        .project-logo {
-            width: 120px;
-            height: auto;
-            max-height: 60px;
-            object-fit: contain;
-            flex-shrink: 0;
-        }
+    .hero {
+      padding: 5.5rem 0 3.25rem;
+      position: relative;
+    }
 
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px;
-            margin-top: 30px;
-        }
+    .hero-shell {
+      display: grid;
+      grid-template-columns: 1.3fr 0.9fr;
+      gap: 1.2rem;
+      align-items: stretch;
+    }
 
-        .skill-category {
-            background: var(--mint-light);
-            padding: 20px;
-            border-radius: 8px;
-            border-left: 4px solid var(--mint-primary);
-        }
+    .panel {
+      border-radius: var(--radius-xl);
+      border: 1px solid var(--line);
+      background: var(--card);
+      backdrop-filter: blur(10px);
+      box-shadow: var(--shadow);
+    }
 
-        .skill-category h3 {
-            margin: 0 0 15px 0;
-            color: var(--mint-dark);
-            font-size: 1.2em;
-        }
+    .hero-main {
+      padding: 2.2rem;
+      position: relative;
+      overflow: hidden;
+    }
 
-        .skill-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-        }
+    .hero-main::after {
+      content: "";
+      position: absolute;
+      width: 420px;
+      height: 420px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(93, 228, 220, 0.25) 0%, transparent 70%);
+      right: -130px;
+      top: -170px;
+      pointer-events: none;
+    }
 
-        .skill-tag {
-            background: var(--white);
-            color: var(--text-primary);
-            padding: 6px 12px;
-            border-radius: 20px;
-            font-size: 0.9em;
-            font-weight: 500;
-            border: 1px solid var(--mint-secondary);
-            transition: all 0.3s ease;
-        }
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.55rem;
+      padding: 0.4rem 0.75rem;
+      border-radius: 999px;
+      font-weight: 700;
+      font-size: 0.76rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      background: rgba(24, 184, 176, 0.14);
+      color: var(--ink-800);
+      margin-bottom: 1.1rem;
+    }
 
-        .skill-tag:hover {
-            background: var(--mint-primary);
-            color: var(--white);
-            transform: translateY(-2px);
-        }
+    h1 {
+      font-family: "Manrope", "Segoe UI", sans-serif;
+      font-weight: 700;
+      letter-spacing: -0.015em;
+      font-size: clamp(2rem, 3.1vw, 3rem);
+      line-height: 1.12;
+      margin-bottom: 1rem;
+      max-width: 22ch;
+    }
 
-        .publication-list {
-            background: var(--light-gray);
-            padding: 25px;
-            border-radius: 8px;
-            margin: 20px 0;
-        }
+    .hero-main p {
+      color: var(--ink-600);
+      line-height: 1.72;
+      max-width: 62ch;
+      font-size: 1.02rem;
+    }
 
-        .contact-info {
-            background: var(--mint-light);
-            padding: 25px;
-            border-radius: 8px;
-            margin: 20px 0;
-        }
+    .cta-row {
+      margin-top: 1.5rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.7rem;
+    }
 
-        .contact-info h3 {
-            margin-top: 0;
-        }
+    .btn {
+      text-decoration: none;
+      font-weight: 700;
+      border-radius: 999px;
+      padding: 0.78rem 1.08rem;
+      transition: transform 180ms ease, box-shadow 180ms ease, background 180ms ease;
+      font-size: 0.92rem;
+    }
 
-        .placeholder-text {
-            font-style: italic;
-            color: var(--text-secondary);
-            opacity: 0.8;
-        }
+    .btn-primary {
+      color: #fff;
+      background: linear-gradient(120deg, var(--cyan-500), #0a8d9a 70%);
+      box-shadow: 0 12px 26px rgba(24, 184, 176, 0.34);
+    }
 
-        footer {
-            background: var(--mint-primary);
-            color: var(--white);
-            text-align: center;
-            padding: 25px 0;
-            margin-top: 50px;
-        }
+    .btn-secondary {
+      color: var(--ink-950);
+      border: 1px solid rgba(31, 28, 36, 0.16);
+      background: rgba(255, 255, 255, 0.84);
+    }
 
-        footer p {
-            color: var(--white);
-            font-weight: 300;
-        }
+    .btn:hover,
+    .btn:focus-visible {
+      transform: translateY(-2px);
+      box-shadow: 0 16px 30px rgba(18, 17, 18, 0.18);
+      outline: none;
+    }
 
-        /* Mobile Responsiveness */
-        @media (max-width: 768px) {
-            .container {
-                padding: 0 15px;
-            }
+    .hero-side {
+      padding: 1.3rem;
+      display: grid;
+      gap: 0.7rem;
+      align-content: start;
+    }
 
-            header h1 {
-                font-size: 2em;
-            }
+    .metric {
+      border-radius: var(--radius-lg);
+      padding: 1rem;
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.8);
+      transform: translateY(0);
+      transition: transform 220ms ease, background 220ms ease;
+    }
 
-            header p {
-                font-size: 1em;
-            }
+    .metric:hover {
+      transform: translateY(-3px);
+      background: #fff;
+    }
 
-            .tabs {
-                flex-wrap: wrap;
-            }
+    .metric .n {
+      display: block;
+      font-family: "Manrope", "Segoe UI", sans-serif;
+      font-size: 1.65rem;
+      font-weight: 700;
+      letter-spacing: -0.015em;
+      margin-bottom: 0.2rem;
+    }
 
-            .tab-button {
-                flex: 1 1 50%;
-                font-size: 14px;
-                padding: 15px 10px;
-            }
+    .metric .l {
+      color: var(--ink-600);
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
 
-            .tab-content {
-                padding: 25px 20px;
-            }
+    .section {
+      padding: 1.8rem 0 0.8rem;
+      position: relative;
+      scroll-margin-top: 90px;
+    }
 
-            h2 {
-                font-size: 1.6em;
-            }
+    .section::before {
+      content: "";
+      position: absolute;
+      top: -0.35rem;
+      left: 50%;
+      width: min(560px, 82%);
+      height: 1px;
+      transform: translateX(-50%);
+      background: linear-gradient(90deg, transparent, rgba(31, 28, 36, 0.24), transparent);
+    }
 
-            .tabs-container {
-                margin: 20px 0;
-            }
-        }
+    body[data-theme="dark"] .section::before {
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.24), transparent);
+    }
 
-        @media (max-width: 480px) {
-            .tab-button {
-                flex: 1 1 100%;
-            }
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      align-items: end;
+      margin-bottom: 1rem;
+    }
 
-            .tab-content {
-                padding: 20px 15px;
-            }
+    .section h2 {
+      font-family: "Syne", sans-serif;
+      font-size: clamp(1.4rem, 2.4vw, 2rem);
+      letter-spacing: -0.025em;
+    }
 
-            header {
-                padding: 30px 0;
-            }
-        }
-    </style>
+    .section-note {
+      color: var(--ink-600);
+      max-width: 56ch;
+      line-height: 1.6;
+      font-size: 0.95rem;
+    }
+
+    .cards {
+      display: grid;
+      gap: 0.95rem;
+      grid-template-columns: repeat(12, 1fr);
+    }
+
+    .card {
+      grid-column: span 4;
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--line);
+      background: var(--card);
+      backdrop-filter: blur(10px);
+      box-shadow: var(--shadow);
+      padding: 1rem;
+      transition: transform 260ms ease, box-shadow 260ms ease, border-color 260ms ease;
+      transform: translateY(12px);
+      opacity: 0;
+    }
+
+    .card.reveal {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(24, 184, 176, 0.5);
+      box-shadow: 0 20px 36px rgba(18, 17, 18, 0.2);
+    }
+
+    .tag {
+      display: inline-block;
+      margin-bottom: 0.75rem;
+      background: rgba(255, 127, 111, 0.14);
+      color: #7e2f24;
+      border-radius: 999px;
+      padding: 0.32rem 0.58rem;
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+    }
+
+    .card h3 {
+      font-size: 1.04rem;
+      letter-spacing: -0.01em;
+      margin-bottom: 0.45rem;
+    }
+
+    .card p {
+      color: var(--ink-600);
+      line-height: 1.62;
+      margin-bottom: 0.82rem;
+      font-size: 0.94rem;
+    }
+
+    .outcome {
+      border-top: 1px dashed rgba(31, 28, 36, 0.18);
+      padding-top: 0.7rem;
+      color: var(--ink-800);
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+
+    .card a {
+      text-decoration: none;
+      color: #066f81;
+      font-weight: 700;
+      font-size: 0.88rem;
+      margin-right: 0.65rem;
+    }
+
+    body[data-theme="dark"] .card a,
+    body[data-theme="dark"] .pub-item a {
+      color: #74d7ff;
+    }
+
+    .about-grid {
+      display: grid;
+      gap: 0.95rem;
+      grid-template-columns: 1.25fr 0.75fr;
+      margin-top: 0.5rem;
+    }
+
+    .about-main,
+    .about-side {
+      padding: 1.1rem;
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--line);
+      background: var(--card);
+      backdrop-filter: blur(10px);
+      box-shadow: var(--shadow);
+    }
+
+    .about-main p {
+      color: var(--ink-600);
+      line-height: 1.72;
+      margin-bottom: 0.85rem;
+    }
+
+    .pill-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.48rem;
+      margin-top: 0.7rem;
+    }
+
+    .pill {
+      border-radius: 999px;
+      border: 1px solid rgba(31, 28, 36, 0.14);
+      background: rgba(255, 255, 255, 0.88);
+      padding: 0.38rem 0.62rem;
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--ink-800);
+      text-decoration: none;
+    }
+
+    .pub-list {
+      list-style: none;
+      display: grid;
+      gap: 0.75rem;
+      margin-top: 0.75rem;
+    }
+
+    .pub-item {
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.84);
+      padding: 0.8rem;
+    }
+
+    .pub-item strong {
+      display: block;
+      margin-bottom: 0.2rem;
+    }
+
+    .pub-item span {
+      color: var(--ink-600);
+      font-size: 0.9rem;
+    }
+
+    .pub-item a {
+      color: #066f81;
+      font-weight: 700;
+      font-size: 0.86rem;
+      text-decoration: none;
+    }
+
+    .pub-status {
+      color: var(--ink-600);
+      font-size: 0.9rem;
+      font-style: italic;
+    }
+
+    .footer {
+      padding: 2.1rem 0 2.4rem;
+      color: var(--ink-600);
+      font-size: 0.92rem;
+    }
+
+    .footer-inner {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 0.8rem;
+      border-top: 1px solid rgba(31, 28, 36, 0.12);
+      padding-top: 1.2rem;
+    }
+
+    @media (max-width: 980px) {
+      .hero-shell {
+        grid-template-columns: 1fr;
+      }
+
+      .card {
+        grid-column: span 6;
+      }
+
+      .about-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .topbar-inner {
+        height: auto;
+        padding: 0.7rem 0;
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .hero {
+        padding-top: 4.2rem;
+      }
+
+      .hero-main,
+      .hero-side,
+      .about-main,
+      .about-side {
+        padding: 1rem;
+      }
+
+      .card {
+        grid-column: span 12;
+      }
+
+      .section-head {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .theme-toggle {
+        margin-top: 0.2rem;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 1ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 1ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+  </style>
 </head>
 <body>
-    <header>
-        <div class="container">
-            <h1>M. Elliott Williams</h1>
-            <p>Bioinformatics Analyst at Emory University</p>
-        </div>
-    </header>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <div id="top" aria-hidden="true"></div>
+  <div class="scroll-progress" aria-hidden="true">
+    <div class="scroll-progress-bar" id="scroll-progress-bar"></div>
+  </div>
+  <div class="grain" aria-hidden="true"></div>
 
-    <div class="container">
-        <div class="tabs-container">
-            <div class="tabs">
-                <button class="tab-button active" data-tab="about">About</button>
-                <button class="tab-button" data-tab="skills">Skills</button>
-                <button class="tab-button" data-tab="publications">Publications</button>
-                <button class="tab-button" data-tab="projects">Projects</button>
-                <button class="tab-button" data-tab="contact">Contact</button>
-            </div>
-
-            <div class="tab-content">
-                <div class="tab-pane active" id="about">
-                    <h2>About Me</h2>
-                    <p>I'm a bioinformatics analyst currently working between the Boss-Scharer and Kohlmeier labs at Emory University's Department of Microbiology and Immunology, specializing in single-cell bioinformatics, systems biology, and graph theory applications.</p>
-                    
-                    <p>My path to bioinformatics began in the cosmos. I earned my Bachelor of Science in Astrophysics from The University of Georgia in 2020, where I spent my undergraduate years studying computational fluid dynamics of interstellar hydrogen clouds that fuel star formation in the Milky Way under Robin Shelton's mentorship. My research journey took me from remote observations at Kitt Peak National Observatory and Cerro Tololo Inter-American Observatory—quantifying dark matter in spiral galaxies during high school with Agnes Scott College's Amy Lovell—to spending a southern hemisphere summer in La Serena, Chile, studying Type Ia Supernovae through an NSF Research Experiences for Undergraduates program.</p>
-                    
-                    <p>The analytical and computational skills I developed studying the universe's largest structures now help me explore some of biology's smallest mysteries. Since joining Emory in 2021, I've focused on developing collaborative software tools and machine learning approaches for genomic data analysis, bridging computational methods with biological discoveries.</p>
-                    
-                    <p>Outside the lab, I'm a multi-instrumentalist (piano, harmonica, ukulele, and trumpet), passionate traveler who loves connecting with people from different cultures, and creative cook who treats the kitchen as another space for experimentation. I share my home with my partner and two cats with wonderfully layered personalities—Kiwi and Theo—who graciously allow us to live in their domain.</p>
-                </div>
-
-                <div class="tab-pane" id="skills">
-                    <h2>Skills & Technologies</h2>
-                    
-                    <div class="skills-grid">
-                        <div class="skill-category">
-                            <h3>Programming Languages</h3>
-                            <div class="skill-tags">
-                                <span class="skill-tag">Python</span>
-                                <span class="skill-tag">R</span>
-                                <span class="skill-tag">Bash</span>
-                            </div>
-                        </div>
-
-                        <div class="skill-category">
-                            <h3>Bioinformatics Tools & Technologies</h3>
-                            <div class="skill-tags">
-                                <span class="skill-tag">Single-cell RNA-seq</span>
-                                <span class="skill-tag">ATAC-seq</span>
-                                <span class="skill-tag">CITE-seq</span>
-                                <span class="skill-tag">ASAP-seq</span>
-                                <span class="skill-tag">BCR/TCR libraries</span>
-                                <span class="skill-tag">Cell Ranger</span>
-                                <span class="skill-tag">Seurat</span>
-                                <span class="skill-tag">Scanpy</span>
-                                <span class="skill-tag">CellRank</span>
-                                <span class="skill-tag">SCPA</span>
-                                <span class="skill-tag">MOFA</span>
-                                <span class="skill-tag">CellxGene</span>
-                                <span class="skill-tag">ShinyCell</span>
-                            </div>
-                        </div>
-
-                        <div class="skill-category">
-                            <h3>Computing & Infrastructure</h3>
-                            <div class="skill-tags">
-                                <span class="skill-tag">AWS (EC2, S3, CLI)</span>
-                                <span class="skill-tag">High-Performance Computing</span>
-                                <span class="skill-tag">SLURM</span>
-                                <span class="skill-tag">Git Version Control</span>
-                                <span class="skill-tag">Pipeline Development</span>
-                                <span class="skill-tag">Cloud Data Portals</span>
-                            </div>
-                        </div>
-
-                        <div class="skill-category">
-                            <h3>Data Analysis & Mathematics</h3>
-                            <div class="skill-tags">
-                                <span class="skill-tag">Data Preprocessing</span>
-                                <span class="skill-tag">Quality Control</span>
-                                <span class="skill-tag">Batch Correction</span>
-                                <span class="skill-tag">Clustering</span>
-                                <span class="skill-tag">Trajectory Inference</span>
-                                <span class="skill-tag">Differential Expression</span>
-                                <span class="skill-tag">Gene Regulatory Networks</span>
-                                <span class="skill-tag">Graph Theory</span>
-                                <span class="skill-tag">Linear Algebra</span>
-                                <span class="skill-tag">Fourier Transforms</span>
-                            </div>
-                        </div>
-
-                        <div class="skill-category">
-                            <h3>Leadership & Communication</h3>
-                            <div class="skill-tags">
-                                <span class="skill-tag">Team Training & Onboarding</span>
-                                <span class="skill-tag">FAIR Data Management</span>
-                                <span class="skill-tag">Technical Communication</span>
-                                <span class="skill-tag">Experimental Design</span>
-                                <span class="skill-tag">Resource Management</span>
-                                <span class="skill-tag">Problem-Solving</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="tab-pane" id="publications">
-                    <h2>Publications</h2>
-                    <div class="publication-list">
-                        <p>For a complete list of my publications, please visit my <a href="https://orcid.org/0000-0001-8271-3394" target="_blank">ORCID profile</a>.</p>
-                        <ul id="publications-list"></ul>
-                        <script>
-                            document.addEventListener('DOMContentLoaded', () => {
-                                fetch('publications.json')
-                                    .then(response => response.json())
-                                    .then(data => {
-                                        const list = document.getElementById('publications-list');
-                                        data.forEach(pub => {
-                                            const li = document.createElement('li');
-                                            const doiDisplay = pub.doi !== 'N/A' 
-                                                ? `<a href="https://doi.org/${pub.doi}">${pub.doi}</a>`
-                                                : pub.doi;
-                                            li.innerHTML = `
-                                                <strong>${pub.title}</strong><br>
-                                                <em>${pub.journal}</em>, ${pub.publication_date}<br>
-                                                DOI: ${doiDisplay}
-                                            `;
-                                            list.appendChild(li);
-                                        });
-                                    })
-                                    .catch(error => console.error('Error loading publications:', error));
-                            });
-                        </script>
-                    </div>
-                </div>
-
-                <div class="tab-pane" id="projects">
-                    <h2>Projects</h2>
-                    
-                    <div class="project-card">
-                        <div class="project-header">
-                            <img src="https://raw.githubusercontent.com/willisbillis/MAPseq/e8bcbf834d76d4bb72d27d1d8ccd09a1b56a0033/assets/logo.png" alt="MAPseq Pipeline Logo" class="project-logo">
-                            <h3>MAPseq Pipeline</h3>
-                        </div>
-                        <p>This repository provides an end-to-end open source pipeline for the processing of MAPseq (<b>M</b>arker <b>A</b>ssisted <b>P</b>rogramming sequencing) data. The repository is primarily written in R, with supporting scripts in Shell and Python to facilitate various stages of data analysis. Its modular structure allows users to efficiently process, analyze, and interpret MAPseq datasets in a reproducible manner.</p>
-                        <p><a href="https://github.com/willisbillis/MAPseq" target="_blank" rel="noopener noreferrer">View on GitHub →</a></p>
-                    </div>
-
-                    <div class="project-card">
-                        <h3>Magnetic Percolation Art</h3>
-                        <p>An artistic exploration of percolation theory through computational visualization. This project generates beautiful, magnetic-field-inspired patterns by simulating percolation processes and rendering them as digital art. Combining mathematical concepts with creative coding, it demonstrates how scientific principles can be transformed into visually striking artwork.</p>
-                        <p><a href="https://github.com/willisbillis/magnetic-percolation-art" target="_blank" rel="noopener noreferrer">View on GitHub →</a></p>
-                    </div>
-
-                    <div class="project-card">
-                        <h3>Network Percolation</h3>
-                        <p>An interactive browser-based simulation of network percolation theory, exploring how a network transitions from a disconnected to a connected state as edges are added. Built with WebGL for real-time rendering, the simulation lets users adjust bond/site occupation probabilities and visualize the emergence of a spanning cluster — the core phenomenon behind percolation thresholds in physics, epidemiology, and materials science.</p>
-                        <p><a href="https://github.com/willisbillis/network-percolation" target="_blank" rel="noopener noreferrer">View on GitHub →</a></p>
-                    </div>
-
-                    <div class="project-card">
-                        <h3>Strange Attractors — Interactive 3D Chaos Explorer</h3>
-                        <p>An interactive 3D visualization gallery for exploring strange attractors and chaotic dynamical systems. Built with WebGL (Three.js), it renders real-time trajectories of seven classic attractors (Lorenz, Rössler, Thomas, Aizawa, Chen, Halvorsen, and Dadras) using 4th-order Runge-Kutta integration. Features include adjustable parameters, multiple color schemes, butterfly-effect mode, gallery auto-cycle, and screenshot export — all running at 60 fps directly in the browser with no installation required.</p>
-                        <p>
-                            <a href="https://willisbillis.github.io/strange-attractors/" target="_blank" rel="noopener noreferrer">Live Demo →</a>
-                            &nbsp;
-                            <a href="https://github.com/willisbillis/strange-attractors" target="_blank" rel="noopener noreferrer">View on GitHub →</a>
-                        </p>
-                    </div>
-                </div>
-
-                <div class="tab-pane" id="contact">
-                    <h2>Contact Information</h2>
-                    
-                    <div class="contact-info">
-                        <h3>Professional Profiles</h3>
-                        <p>ORCID: <a href="https://orcid.org/0000-0001-8271-3394" target="_blank">0000-0001-8271-3394</a></p>
-                        <p>Github: <a href="https://github.com/willisbillis" target="_blank">willisbillis</a></p>
-
-                        <h3>Email</h3>
-                        <p>mewilliams < DOT > bio < AT > gmail < DOT > com</p>
-
-                        <h3>Resources</h3>
-                        <p><a href="CV Elliott Williams.pdf" target="_blank">Download CV (PDF)</a></p>
-                    </div>
-                </div>
-            </div>
-        </div>
+  <header class="topbar">
+    <div class="container topbar-inner">
+      <a class="brand" href="#top">M. Elliott Williams</a>
+      <nav class="nav" aria-label="Main">
+        <a href="#about">About</a>
+        <a href="#work">Projects</a>
+        <a href="#publications">Publications</a>
+        <a href="#contact">Contact</a>
+        <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Switch color theme" aria-pressed="false">Dark</button>
+      </nav>
     </div>
+  </header>
 
-    <footer>
-        <div class="container">
-            <p>&copy; 2025 M Elliott Williams</p>
+  <main id="main-content">
+    <section class="hero">
+      <div class="container hero-shell">
+        <article class="panel hero-main">
+          <span class="eyebrow">Bioinformatics Analyst | Emory University</span>
+          <h1>Computational biology for clear, reproducible scientific analysis.</h1>
+          <p>I work at the intersection of single-cell genomics, systems immunology, and software engineering. I design reproducible analysis pipelines and interpretable modeling workflows that help teams move from raw data to validated biological insight, fast.</p>
+          <div class="cta-row">
+            <a class="btn btn-primary" href="#work">Explore Projects</a>
+            <a class="btn btn-secondary" href="CV Elliott Williams.pdf" target="_blank" rel="noopener noreferrer">Download CV</a>
+          </div>
+        </article>
+
+        <aside class="panel hero-side" aria-label="Highlights">
+          <div class="metric">
+            <span class="n" id="pub-count">11</span>
+            <span class="l">Peer-reviewed publications</span>
+          </div>
+          <div class="metric">
+            <span class="n">4</span>
+            <span class="l">Public technical products</span>
+          </div>
+          <div class="metric">
+            <span class="n">2</span>
+            <span class="l">Active collaborating labs</span>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section id="about" class="section">
+      <div class="container">
+        <div class="section-head">
+          <h2>About</h2>
+          <p class="section-note">Astrophysics-trained analyst turned immunology-focused computational biologist, building practical tooling for translational science.</p>
         </div>
-    </footer>
+        <div class="about-grid">
+          <article class="about-main">
+            <p>I currently support collaborative work between the Boss-Scharer and Kohlmeier labs, with an emphasis on single-cell and multimodal profiling of adaptive immune responses. My focus is delivery: robust pipelines, high-quality statistical interpretation, and communication that helps wet-lab and clinical teams act confidently.</p>
+            <p>Before bioinformatics, I studied astrophysical fluid dynamics and observational astronomy. That training now translates into strong numerical intuition, systems-level thinking, and comfort with complex, high-dimensional data.</p>
+          </article>
+          <aside class="about-side">
+            <h3 style="font-family: Syne, sans-serif; margin-bottom: 0.55rem;">Research Themes</h3>
+            <div class="pill-list">
+              <a class="pill" href="https://www.10xgenomics.com/what-is-single-cell-rna-seq" target="_blank" rel="noopener noreferrer">Single-cell RNA-seq</a>
+              <a class="pill" href="https://cite-seq.com/" target="_blank" rel="noopener noreferrer">CITE-seq and ATAC-seq</a>
+              <a class="pill" href="https://www.sc-best-practices.org/trajectories/pseudotemporal.html" target="_blank" rel="noopener noreferrer">Trajectory inference</a>
+              <a class="pill" href="https://snakemake.readthedocs.io/" target="_blank" rel="noopener noreferrer">Pipeline engineering</a>
+              <a class="pill" href="https://slurm.schedmd.com/overview.html" target="_blank" rel="noopener noreferrer">Cloud and HPC workflows</a>
+              <a class="pill" href="https://www.sc-best-practices.org/conditions/differential_gene_expression.html" target="_blank" rel="noopener noreferrer">Differential expression</a>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const tabButtons = document.querySelectorAll('.tab-button');
-            const tabPanes = document.querySelectorAll('.tab-pane');
+    <section id="work" class="section">
+      <div class="container">
+        <div class="section-head">
+          <h2>Selected Work</h2>
+          <p class="section-note">A mix of scientific software, simulation, and high-performance browser-based tools.</p>
+        </div>
+        <div class="cards">
+          <article class="card">
+            <span class="tag">Pipeline</span>
+            <h3>MAPseq Pipeline</h3>
+            <p>End-to-end open source workflow for processing MAPseq data with modular stages in R, shell, and Python.</p>
+            <div class="outcome">Outcome: Converted fragmented analysis steps into a reproducible system that reduces manual handoffs.</div>
+            <p style="margin-top: 0.7rem; margin-bottom: 0;">
+              <a href="https://github.com/willisbillis/MAPseq" target="_blank" rel="noopener noreferrer">GitHub</a>
+            </p>
+          </article>
 
-            function switchTab(targetTab) {
-                // Remove active class from all buttons and panes
-                tabButtons.forEach(button => button.classList.remove('active'));
-                tabPanes.forEach(pane => pane.classList.remove('active'));
+          <article class="card">
+            <span class="tag">Visualization</span>
+            <h3>Strange Attractors Explorer</h3>
+            <p>Interactive 3D attractor gallery with RK4 integration, configurable systems, and performant WebGL rendering.</p>
+            <div class="outcome">Outcome: Production-quality scientific visualization running at interactive framerates in-browser.</div>
+            <p style="margin-top: 0.7rem; margin-bottom: 0;">
+              <a href="https://willisbillis.github.io/strange-attractors/" target="_blank" rel="noopener noreferrer">Live</a>
+              <a href="https://github.com/willisbillis/strange-attractors" target="_blank" rel="noopener noreferrer">GitHub</a>
+            </p>
+          </article>
 
-                // Add active class to clicked button and corresponding pane
-                document.querySelector(`[data-tab="${targetTab}"]`).classList.add('active');
-                document.getElementById(targetTab).classList.add('active');
+          <article class="card">
+            <span class="tag">Simulation</span>
+            <h3>Network Percolation</h3>
+            <p>Real-time simulation of network percolation thresholds with tunable edge and site occupancy parameters.</p>
+            <div class="outcome">Outcome: Clear educational interface for communicating critical transitions in complex systems.</div>
+            <p style="margin-top: 0.7rem; margin-bottom: 0;">
+              <a href="https://willisbillis.github.io/network-percolation/" target="_blank" rel="noopener noreferrer">Live</a>
+              <a href="https://github.com/willisbillis/network-percolation" target="_blank" rel="noopener noreferrer">GitHub</a>
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="publications" class="section">
+      <div class="container">
+        <div class="section-head">
+          <h2>Publications</h2>
+          <p class="section-note">Selected publications are synced from ORCID, so this list stays current with minimal manual updates.</p>
+        </div>
+        <div class="about-main">
+          <p style="margin-bottom: 0.8rem;">For the complete bibliography, see <a href="https://orcid.org/0000-0001-8271-3394" target="_blank" rel="noopener noreferrer" style="color: #066f81; font-weight: 700; text-decoration: none;">ORCID</a>.</p>
+          <ul class="pub-list" id="publications-list"></ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="section" style="padding-bottom: 2.1rem;">
+      <div class="container">
+        <div class="section-head">
+          <h2>Contact</h2>
+          <p class="section-note">Open to discussions about collaborative science, platform development, and applied computational biology roles.</p>
+        </div>
+        <div class="about-main">
+          <p><strong>ORCID:</strong> <a href="https://orcid.org/0000-0001-8271-3394" target="_blank" rel="noopener noreferrer" style="color: #066f81; text-decoration: none; font-weight: 700;">0000-0001-8271-3394</a></p>
+          <p><strong>GitHub:</strong> <a href="https://github.com/willisbillis" target="_blank" rel="noopener noreferrer" style="color: #066f81; text-decoration: none; font-weight: 700;">willisbillis</a></p>
+          <div class="cta-row" style="margin-top: 1rem;">
+            <a class="btn btn-primary" href="https://app.usemotion.com/meet/elliott-williams/meeting" target="_blank" rel="noopener noreferrer">Book Time on Motion</a>
+            <a class="btn btn-secondary" href="CV Elliott Williams.pdf" target="_blank" rel="noopener noreferrer">View CV</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <span>Copyright 2026 M. Elliott Williams</span>
+      <span>Designed for clarity, speed, and scientific credibility.</span>
+    </div>
+  </footer>
+
+  <script>
+    function setupThemeToggle() {
+      const toggle = document.getElementById('theme-toggle');
+      if (!toggle) {
+        return;
+      }
+
+      const storageKey = 'site-theme';
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      let savedTheme = null;
+      try {
+        savedTheme = window.localStorage.getItem(storageKey);
+      } catch (error) {
+        savedTheme = null;
+      }
+      const initialTheme = savedTheme || (prefersDark ? 'dark' : 'light');
+
+      function setTheme(theme) {
+        document.body.setAttribute('data-theme', theme);
+        const isDark = theme === 'dark';
+        toggle.textContent = isDark ? 'Light' : 'Dark';
+        toggle.setAttribute('aria-pressed', String(isDark));
+      }
+
+      setTheme(initialTheme);
+
+      toggle.addEventListener('click', function () {
+        const current = document.body.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
+        const next = current === 'dark' ? 'light' : 'dark';
+        setTheme(next);
+        try {
+          window.localStorage.setItem(storageKey, next);
+        } catch (error) {
+          // Ignore storage failures in restricted browsing contexts.
+        }
+      });
+    }
+
+    function setupScrollProgress() {
+      const bar = document.getElementById('scroll-progress-bar');
+      if (!bar) {
+        return;
+      }
+
+      function updateProgress() {
+        const scrollTop = window.scrollY || document.documentElement.scrollTop;
+        const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+        const ratio = scrollHeight > 0 ? (scrollTop / scrollHeight) * 100 : 0;
+        bar.style.width = ratio.toFixed(2) + '%';
+      }
+
+      updateProgress();
+      window.addEventListener('scroll', updateProgress, { passive: true });
+      window.addEventListener('resize', updateProgress);
+    }
+
+    function revealCards() {
+      const cards = document.querySelectorAll('.card');
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) {
+            return;
+          }
+          const index = Number(entry.target.getAttribute('data-i') || '0');
+          setTimeout(() => {
+            entry.target.classList.add('reveal');
+          }, 90 * index);
+          observer.unobserve(entry.target);
+        });
+      }, { threshold: 0.18 });
+
+      cards.forEach((card, i) => {
+        card.setAttribute('data-i', String(i));
+        observer.observe(card);
+      });
+    }
+
+    function loadPublications() {
+      const list = document.getElementById('publications-list');
+      if (!list) {
+        return;
+      }
+
+      fetch('publications.json')
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error('Failed to load publication data.');
+          }
+          return response.json();
+        })
+        .then((data) => {
+          if (!Array.isArray(data)) {
+            throw new Error('Publication data is not a valid list.');
+          }
+
+          list.innerHTML = '';
+          const metric = document.getElementById('pub-count');
+          if (metric && data.length > 0) {
+            metric.textContent = String(data.length);
+          }
+
+          if (data.length === 0) {
+            const emptyItem = document.createElement('li');
+            emptyItem.className = 'pub-item pub-status';
+            emptyItem.textContent = 'No publications are currently available from ORCID.';
+            list.appendChild(emptyItem);
+            return;
+          }
+
+          data
+            .slice()
+            .sort((a, b) => String(b.publication_date || '').localeCompare(String(a.publication_date || '')))
+            .slice(0, 8)
+            .forEach((pub) => {
+            const li = document.createElement('li');
+            li.className = 'pub-item';
+
+            const title = document.createElement('strong');
+            title.textContent = pub.title;
+            li.appendChild(title);
+
+            const meta = document.createElement('span');
+            meta.textContent = pub.journal + ', ' + pub.publication_date;
+            li.appendChild(meta);
+
+            if (pub.doi && pub.doi !== 'N/A') {
+              li.appendChild(document.createElement('br'));
+              const doi = document.createElement('a');
+              doi.href = 'https://doi.org/' + pub.doi;
+              doi.target = '_blank';
+              doi.rel = 'noopener noreferrer';
+              doi.textContent = pub.doi;
+              li.appendChild(doi);
             }
 
-            // Add click event listeners to tab buttons
-            tabButtons.forEach(button => {
-                button.addEventListener('click', function() {
-                    const targetTab = this.getAttribute('data-tab');
-                    switchTab(targetTab);
-                });
+            list.appendChild(li);
             });
-
-            // Optional: Add keyboard navigation
-            tabButtons.forEach((button, index) => {
-                button.addEventListener('keydown', function(e) {
-                    let newIndex;
-                    if (e.key === 'ArrowLeft') {
-                        e.preventDefault();
-                        newIndex = index > 0 ? index - 1 : tabButtons.length - 1;
-                    } else if (e.key === 'ArrowRight') {
-                        e.preventDefault();
-                        newIndex = index < tabButtons.length - 1 ? index + 1 : 0;
-                    } else {
-                        return;
-                    }
-                    
-                    tabButtons[newIndex].focus();
-                    const targetTab = tabButtons[newIndex].getAttribute('data-tab');
-                    switchTab(targetTab);
-                });
-            });
+        })
+        .catch(() => {
+          list.innerHTML = '';
+          const li = document.createElement('li');
+          li.className = 'pub-item pub-status';
+          li.textContent = 'Publications are temporarily unavailable. Please view the ORCID profile link above.';
+          list.appendChild(li);
         });
-    </script>
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+      setupThemeToggle();
+      setupScrollProgress();
+      revealCards();
+      loadPublications();
+    });
+  </script>
 </body>
 </html>

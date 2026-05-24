@@ -4,11 +4,27 @@ Personal website for M Elliott Williams, Bioinformatics Analyst at Emory Univers
 
 ## ORCID Publications Integration
 
-The site includes an automated system to fetch and display publications from ORCID:
+The site includes an automated system to fetch and display publications from ORCID.
+
+[![Update Publications from ORCID](https://github.com/willisbillis/willisbillis.github.io/actions/workflows/update_publications.yml/badge.svg)](https://github.com/willisbillis/willisbillis.github.io/actions/workflows/update_publications.yml)
+
+### Automatic updates (GitHub Actions)
+
+Publications are automatically refreshed daily via:
+
+- `.github/workflows/update_publications.yml`
+- Scheduled run at `08:00 UTC`
+- Manual trigger via `workflow_dispatch`
+
+### Expected update timing
+
+- New ORCID entries should appear on the site within 24 hours of being visible in ORCID.
+- If you need an immediate refresh, run the workflow manually via `workflow_dispatch` or run `python3 fetch_orcid.py` locally and commit the updated `publications.json`.
 
 ### Usage
 
-1. **Fetch Publications**: Run the Python script to fetch publications from ORCID API:
+1. **Fetch Publications Locally**: Run the Python script to fetch publications from ORCID API:
+
    ```bash
    python3 fetch_orcid.py
    ```
