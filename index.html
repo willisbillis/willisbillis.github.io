@@ -1075,7 +1075,9 @@
         return;
       }
 
-      fetch('publications.json')
+      // Use cache-busting query parameter to ensure fresh data
+      const cacheBreaker = '?t=' + Date.now();
+      fetch('publications.json' + cacheBreaker)
         .then((response) => {
           if (!response.ok) {
             throw new Error('Failed to load publication data.');
@@ -1137,6 +1139,14 @@
           li.textContent = 'Publications are temporarily unavailable. Please view the ORCID profile link above.';
           list.appendChild(li);
         });
+    }
+
+    function setupPublicationsAutoRefresh() {
+      // Refresh publications every 30 seconds to sync with updated JSON
+      const refreshInterval = 30000;
+      setInterval(() => {
+        loadPublications();
+      }, refreshInterval);
     }
 
     function setupMobileMenu() {
@@ -1225,6 +1235,7 @@
       setupScrollProgress();
       revealCards();
       loadPublications();
+      setupPublicationsAutoRefresh();
     });
   </script>
 </body>
